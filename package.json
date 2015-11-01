@@ -1,0 +1,12 @@
+{
+  "name": "NewProject",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start"
+  },
+  "dependencies": {
+    "react-native": "^0.13.2",
+    "reflux": "^0.3.0"
+  }
+}
