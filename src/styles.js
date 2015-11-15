@@ -1,32 +1,17 @@
-import React from "react-native";
-
+import React from 'react-native';
 let {StyleSheet} = React;
 
-export default Styles = StyleSheet.create({
-  appContainer: {
+export default styles = StyleSheet.create({
+  container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#202020"
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#001848',
   },
-
-  appLogo: {
-    width: 100,
-    height: 100,
-    marginTop: 20,
-    marginBottom: 20,
-    borderRadius: 14
-  },
-
-  appMessage: {
+  title: {
     fontSize: 20,
-    color: "white",
-    fontFamily: "Avenir-Medium",
-    alignSelf: "center"
+    textAlign: 'center',
+    margin: 100,
+    color: 'white',
   },
-
-  appSubMessage: {
-    fontSize: 14,
-    opacity: 0.7
-  }
 });
