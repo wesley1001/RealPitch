@@ -3,10 +3,19 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "react-native start"
+    "start": "react-native run-android"
   },
   "dependencies": {
-    "react-native": "^0.13.2",
-    "reflux": "^0.3.0"
+    "co": "^4.6.0",
+    "firebase": "^2.4.0",
+    "lodash": "^4.3.0",
+    "react-native": "^0.19.0",
+    "react-native-scrollable-tab-view": "^0.3.5",
+    "react-redux": "^4.0.0",
+    "redux-thunk": "^1.0.3",
+    "reselect": "^2.0.1"
+  },
+  "devDependencies": {
+    "debug": "^2.2.0"
   }
 }
