@@ -1,5 +1,5 @@
 import React from 'react-native';
-import Newsfeed from './src/newsfeed';
+import Newsfeed from './src/containers/newsfeed';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import newsfeedReducer from './src/reducers/newsfeed';
@@ -8,6 +8,7 @@ import Firebase from 'firebase';
 import config from './src/config';
 import {fetchNewsfeedData} from './src/actions/newsfeed';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
+import Empty from './src/components/empty';
 
 var {AppRegistry} = React;
 
@@ -29,8 +30,8 @@ const AppWithStore = () => {
         tabBarActiveTextColor='ca6144'
         tabBarInactiveTextColor='e0b58c'>
           <Newsfeed tabLabel='Newsfeed'/>
-          <Newsfeed tabLabel='Ask'/>
-          <Newsfeed tabLabel='Profile'/>
+          <Empty tabLabel='Ask'/>
+          <Empty tabLabel='Profile'/>
       </ScrollableTabView>
     </Provider>
   )

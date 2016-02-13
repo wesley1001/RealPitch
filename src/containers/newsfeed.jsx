@@ -1,9 +1,9 @@
 import React from "react-native";
-import Styles from "./styles";
+import Styles from "../styles";
 import { connect } from 'react-redux'
-import {fetchNewsfeedData } from './actions/newsfeed';
+import {fetchNewsfeedData } from '../actions/newsfeed';
 
-import Home from './components/home';
+import NewsfeedScrollView from '../components/newsfeedScrollView';
 
 const mapStateToProps = (state) => {
   return {
@@ -22,6 +22,6 @@ const mapDispatchToProps = (dispatch) => {
 const NewsFeed = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home);
+)(NewsfeedScrollView);
 
 export default NewsFeed

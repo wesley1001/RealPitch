@@ -13,17 +13,15 @@ export const updateNewsfeedCards = (snapshot, error) => {
 export const FETCH_NEWSFEED_DATA = 'FETCH_NEWSFEED_DATA';
 export const fetchNewsfeedData = () => {
   return function (dispatch, getState) {
-    return co(function *() {
-      let firebase = getState().firebaseRef;
+    let firebase = getState().firebaseRef;
 
-      let readResult = firebase.child('testing').once('value', function (snapshot) {
-        let data = snapshot.val();
-        data = _.forIn(data, (value, key) => {value.key = key});
-        dispatch(updateNewsfeedCards(_.toArray(data)));
-      }, function (errorObject) {
-        console.log('the read failed: ' + errorObject.code);
-        dispatch(updateNewsfeedCards(null, errorObject));
-      });
-    })
-  }
+    let readResult = firebase.child('testing').once('value', function (snapshot) {
+      let data = snapshot.val();
+      data = _.forIn(data, (value, key) => {value.key = key});
+      dispatch(updateNewsfeedCards(_.toArray(data)));
+    }, function (errorObject) {
+      console.log('the read failed: ' + errorObject.code);
+      dispatch(updateNewsfeedCards(null, errorObject));
+    });
+  };
 };
