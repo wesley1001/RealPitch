@@ -3,11 +3,12 @@ import Styles from "../styles";
 import { connect } from 'react-redux'
 import {fetchNewsfeedData } from '../actions/newsfeed';
 
-import NewsfeedScrollView from '../components/newsfeedScrollView';
+import NewsfeedView from '../components/newsfeed';
 
 const mapStateToProps = (state) => {
   return {
     newsfeedCardData: state.newsfeedCardData,
+    addMusicLayerShown: state.addMusicLayerShown,
   };
 };
 
@@ -16,12 +17,18 @@ const mapDispatchToProps = (dispatch) => {
     fetchNewsfeedData: () => {
       dispatch(fetchNewsfeedData());
     },
+    addMusicData: () => {
+      dispatch(addMusicData());
+    },
+    showAddMusicLayer: (show) => {
+      dispatch(showAddMusicLayer(show));
+    },
   };
 };
 
 const NewsFeed = connect(
   mapStateToProps,
   mapDispatchToProps
-)(NewsfeedScrollView);
+)(NewsfeedView);
 
 export default NewsFeed

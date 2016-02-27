@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import co from 'co';
 
+// Actions for updating newsfeed cards
 export const UPDATE_NEWSFEED_CARDS = 'UPDATE_NEWSFEED_CARDS';
 export const updateNewsfeedCards = (snapshot, error) => {
   return {
@@ -23,5 +24,23 @@ export const fetchNewsfeedData = () => {
       console.log('the read failed: ' + errorObject.code);
       dispatch(updateNewsfeedCards(null, errorObject));
     });
+  };
+};
+
+// actions for showing add music layer or sending music data to add
+export const SHOW_ADD_MUSIC = 'SHOW_ADD_MUSIC';
+export const showAddMusicLayer = (show) => {
+  return {
+    type: UPDATE_NEWSFEED_CARDS,
+    addMusicLayerShown: show,
+  };
+};
+
+export const ADD_MUSIC = 'ADD_MUSIC';
+export const addMusicData = (data) => {
+  return function (dispatch, getState) {
+    let firebase = getState().firebaseRef;
+
+    console.log(data);
   };
 };

@@ -8,7 +8,7 @@ export default styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#001848',
+    backgroundColor: '#faf2e8',
   },
   title: {
     fontSize: 20,
@@ -16,11 +16,17 @@ export default styles = StyleSheet.create({
     margin: 100,
     color: 'white',
   },
+  circle: {
+    height: 60,
+    width: 60,
+    borderRadius: 30,
+    backgroundColor: '#1f5080',
+  },
 
   // Styles for cards in newsfeed
   card: {
     height: 300,
-    width: 380, 
+    width: 380,
     backgroundColor: '#fcdfa9',
     borderRadius: 10,
     borderWidth: 1,

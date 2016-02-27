@@ -1,53 +1,41 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-'use strict';
+import React from 'react-native';
+import Newsfeed from './src/containers/newsfeed';
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import newsfeedReducer from './src/reducers/newsfeed';
+import thunk from 'redux-thunk';
+import Firebase from 'firebase';
+import config from './src/config';
+import {fetchNewsfeedData} from './src/actions/newsfeed';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
+import Empty from './src/components/empty';
 
-var React = require('react-native');
-var {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-} = React;
+var {AppRegistry} = React;
 
-var NewProject = React.createClass({
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
-  }
-});
+let rootFirebase = new Firebase(config.FIREBASE_ROOT);
+let initialState = {
+  firebaseRef: rootFirebase,
+  newsfeedCardData: [],
+  isGettingNewsfeedData:true,
+};
 
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+let store = createStore(newsfeedReducer, initialState, applyMiddleware(thunk));
 
-AppRegistry.registerComponent('NewProject', () => NewProject);
+const AppWithStore = () => {
+  return (
+    <Provider store={store}>
+      <ScrollableTabView
+        tabBarUnderlineColor='ca6144'
+        tabBarBackgroundColor='e9e6c9'
+        tabBarActiveTextColor='ca6144'
+        tabBarInactiveTextColor='e0b58c'>
+          <Newsfeed tabLabel='Newsfeed'/>
+          <Empty tabLabel='Ask'/>
+          <Empty tabLabel='Profile'/>
+      </ScrollableTabView>
+    </Provider>
+  )
+};
+
+store.dispatch(fetchNewsfeedData());
+AppRegistry.registerComponent('NewProject', () => AppWithStore);

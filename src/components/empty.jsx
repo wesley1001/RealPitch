@@ -1,4 +1,5 @@
 import React from 'react-native';
+import Styles from '../styles';
 
 var {
   Text,
@@ -7,9 +8,9 @@ var {
 
 var Empty = () => {
   return (
-      <View>
-        <Text>Needs work mang</Text>
-      </View>
+    <View style={Styles.container}>
+      <Text>Needs work mang</Text>
+    </View>
   );
 };
 

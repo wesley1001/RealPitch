@@ -1,11 +1,14 @@
 import React from 'react-native';
-import DefaultStyle from '../styles.js';
-import NewsfeedCard from './newsfeedCard';
 import Styles from '../styles';
+import NewsfeedCard from './newsfeedCard';
+import Shapes from '../shapes/cssShapes';
+import AddMusicLayer from './addMusic';
 
 var {
   View,
+  Text,
   ScrollView,
+  StyleSheet,
 } = React;
 
 var createNewsfeedCards = (d, i) => {
@@ -19,21 +22,20 @@ var createNewsfeedCards = (d, i) => {
     </NewsfeedCard>);
 };
 
-var Home = ({newsfeedCardData, fetchNewsfeedData}) => {
+var Newsfeed = ({newsfeedCardData, fetchNewsfeedData}) => {
   newsfeedCardData.forEach(d => {
     d.cb = fetchNewsfeedData;
   });
 
-  console.log(27, newsfeedCardData);
-
   return (
-    <View style={[DefaultStyle.container, {backgroundColor: '#faf2e8'}]}>
+    <View style={Styles.container}>
       <ScrollView
         style={Styles.scrollView}>
         {newsfeedCardData.map((d, i) => {return createNewsfeedCards(d, i)})}
       </ScrollView>
+      <AddMusicLayer pos={{bottom: 10, right: 10}}/>
     </View>
   );
 };
 
-export default Home
+export default Newsfeed
