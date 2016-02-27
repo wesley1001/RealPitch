@@ -1,6 +1,6 @@
 import React from 'react-native';
-import Shapes from '../shapes/cssShapes';
-import Styles from '../styles';
+import Shapes from '../../shapes/cssShapes';
+import Styles from '../../styles';
 
 var scClientId = '334ecd4221d761eec2d1e2a2984e1cf7';
 

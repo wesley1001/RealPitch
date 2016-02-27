@@ -14,7 +14,7 @@ export const updateNewsfeedCards = (snapshot, error) => {
 export const FETCH_NEWSFEED_DATA = 'FETCH_NEWSFEED_DATA';
 export const fetchNewsfeedData = () => {
   return function (dispatch, getState) {
-    let firebase = getState().firebaseRef;
+    let firebase = getState().Newsfeed.firebaseRef;
 
     try {
       let readResult = firebase.child('testing').once('value', function (snapshot) {
@@ -35,7 +35,7 @@ export const fetchNewsfeedData = () => {
 export const ADD_NEW_MUSIC = 'ADD_NEW_MUSIC';
 export const addNewMusic = (data) => {
   return function (dispatch, getState) {
-    let firebase = getState().firebaseRef;
+    let firebase = getState().Newsfeed.firebaseRef;
 
     console.log('SUBMIT36', data);
 

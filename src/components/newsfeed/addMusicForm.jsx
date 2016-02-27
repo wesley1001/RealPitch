@@ -1,5 +1,5 @@
 import React from 'react-native';
-import Styles from '../styles';
+import Styles from '../../styles';
 
 var {
   Text,
@@ -96,6 +96,6 @@ var s = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
   }
-})
+});
 
 export default AddMusicForm;

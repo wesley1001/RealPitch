@@ -1,8 +1,8 @@
 import React from 'react-native';
-import Styles from '../styles';
+import Styles from '../../styles';
 import NewsfeedCard from './newsfeedCard';
-import Shapes from '../shapes/cssShapes';
-import AddMusicLayer from './addMusic';
+import Shapes from '../../shapes/cssShapes';
+import AddMusicLayer from './addMusicLayer';
 
 var {
   View,

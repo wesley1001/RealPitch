@@ -1,6 +1,6 @@
 import React from 'react-native';
-import Styles from '../styles';
-import Shapes from '../shapes/cssShapes';
+import Styles from '../../styles';
+import Shapes from '../../shapes/cssShapes';
 import AddMusicForm from './addMusicForm';
 
 var {

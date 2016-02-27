@@ -3,11 +3,11 @@ import Styles from "../styles";
 import { connect } from 'react-redux'
 import {fetchNewsfeedData, addNewMusic } from '../actions/newsfeed';
 
-import NewsfeedView from '../components/newsfeed';
+import NewsfeedView from '../components/newsfeed/newsfeed';
 
 const mapStateToProps = (state) => {
   return {
-    newsfeedCardData: state.newsfeedCardData,
+    newsfeedCardData: state.Newsfeed.newsfeedCardData,
   };
 };
 
