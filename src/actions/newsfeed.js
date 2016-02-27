@@ -16,31 +16,36 @@ export const fetchNewsfeedData = () => {
   return function (dispatch, getState) {
     let firebase = getState().firebaseRef;
 
-    let readResult = firebase.child('testing').once('value', function (snapshot) {
-      let data = snapshot.val();
-      data = _.forIn(data, (value, key) => {value.key = key});
-      dispatch(updateNewsfeedCards(_.toArray(data)));
-    }, function (errorObject) {
-      console.log('the read failed: ' + errorObject.code);
-      dispatch(updateNewsfeedCards(null, errorObject));
-    });
+    try {
+      let readResult = firebase.child('testing').once('value', function (snapshot) {
+        let data = snapshot.val();
+        data = _.forIn(data, (value, key) => {value.key = key});
+        dispatch(updateNewsfeedCards(_.toArray(data)));
+      }, function (errorObject) {
+        console.log('the read failed: ' + errorObject.code);
+        dispatch(updateNewsfeedCards(null, errorObject));
+      });
+    } catch (ex) {
+      console.log('Read failed: ', ex);
+    }
   };
 };
 
 // actions for showing add music layer or sending music data to add
-export const SHOW_ADD_MUSIC = 'SHOW_ADD_MUSIC';
-export const showAddMusicLayer = (show) => {
-  return {
-    type: UPDATE_NEWSFEED_CARDS,
-    addMusicLayerShown: show,
-  };
-};
-
-export const ADD_MUSIC = 'ADD_MUSIC';
-export const addMusicData = (data) => {
+export const ADD_NEW_MUSIC = 'ADD_NEW_MUSIC';
+export const addNewMusic = (data) => {
   return function (dispatch, getState) {
     let firebase = getState().firebaseRef;
 
-    console.log(data);
+    console.log('SUBMIT36', data);
+
+    return co(function *() {
+      try {
+        let writeResult = yield firebase.child('testing').push(data);
+        fetchNewsfeedData();
+      } catch (ex) {
+        console.log('Write failed', ex);
+      }
+    });
   };
 };

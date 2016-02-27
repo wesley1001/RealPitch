@@ -1,11 +1,11 @@
 import React from 'react-native';
 import Styles from '../styles';
 import Shapes from '../shapes/cssShapes';
+import AddMusicForm from './addMusicForm';
 
 var {
   View,
   Text,
-  StyleSheet,
   TouchableOpacity,
   LayoutAnimation,
   Dimensions,
@@ -24,7 +24,11 @@ class AddMusicLayer extends React.Component {
     };
   }
 
-  _onPressed() {
+  showAddMusicForm(show) {
+    if (this.state.isShowingLayer === !!show) {
+      return true;
+    }
+
     let dim = Dimensions.get('window');
 
     let newBottom = this.state.isShowingLayer ? 10 : 0;
@@ -35,7 +39,7 @@ class AddMusicLayer extends React.Component {
 
     LayoutAnimation.configureNext(animation.spring);
     this.setState({
-      isShowingLayer: !this.state.isShowingLayer,
+      isShowingLayer: show,
       bottom: newBottom,
       right: newRight,
       height: newHeight,
@@ -45,17 +49,21 @@ class AddMusicLayer extends React.Component {
   }
 
   render() {
+    let plusSign = <Text style={Shapes.plusSign}>+</Text>;
+    let content = this.state.isShowingLayer ?
+      <AddMusicForm hideForm={this.showAddMusicForm.bind(this, false)} addNewMusic={this.props.addNewMusic}/> : plusSign;
+
     return (
-      <TouchableOpacity onPress={this._onPressed.bind(this)} activeOpacity={255} style={[Shapes.circle, {
-          position: 'absolute',
-          bottom: this.state.bottom,
-          right: this.state.right,
-          width: this.state.width,
-          height: this.state.height,
-          borderRadius: this.state.borderRadius,
-          backgroundColor: '#1f5080'}]}>
-          <Text style={Shapes.plusSign}>+</Text>
-        </TouchableOpacity>
+      <TouchableOpacity onPress={this.showAddMusicForm.bind(this, true)} activeOpacity={255} style={[Shapes.circle, {
+        position: 'absolute',
+        bottom: this.state.bottom,
+        right: this.state.right,
+        width: this.state.width,
+        height: this.state.height,
+        borderRadius: this.state.borderRadius,
+        backgroundColor: '#b06954'}]}>
+        {content}
+      </TouchableOpacity>
     )
   }
 }
@@ -69,7 +77,7 @@ var animation = {
     },
     update: {
       type: LayoutAnimation.Types.spring,
-      springDamping: 0.80,
+      springDamping: 0.85,
     },
   },
 }

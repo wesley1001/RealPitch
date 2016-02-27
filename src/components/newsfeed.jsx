@@ -22,7 +22,7 @@ var createNewsfeedCards = (d, i) => {
     </NewsfeedCard>);
 };
 
-var Newsfeed = ({newsfeedCardData, fetchNewsfeedData}) => {
+var Newsfeed = ({newsfeedCardData, fetchNewsfeedData, addNewMusic}) => {
   newsfeedCardData.forEach(d => {
     d.cb = fetchNewsfeedData;
   });
@@ -33,7 +33,7 @@ var Newsfeed = ({newsfeedCardData, fetchNewsfeedData}) => {
         style={Styles.scrollView}>
         {newsfeedCardData.map((d, i) => {return createNewsfeedCards(d, i)})}
       </ScrollView>
-      <AddMusicLayer pos={{bottom: 10, right: 10}}/>
+      <AddMusicLayer pos={{bottom: 10, right: 10}} addNewMusic={addNewMusic}/>
     </View>
   );
 };
