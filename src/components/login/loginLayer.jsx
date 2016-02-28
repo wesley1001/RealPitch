@@ -51,10 +51,10 @@ class LoginPage extends React.Component {
               style={s.form}
               onChangeText={(text) => this.setState({password: text})}
             />
-          <TouchableOpacity style={[s.button, {right: 50}]} onPress={this._login.bind(this)}>
+          <TouchableOpacity style={[s.button, {right: 35}]} onPress={this._login.bind(this)}>
             <Text style={s.buttonTitle}>Login</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[s.button, {left: 50}]}
+          <TouchableOpacity style={[s.button, {left: 35}]}
             onPress={this._createUser.bind(this)}>
             <Text style={s.buttonTitle}>Create User</Text>
           </TouchableOpacity>
@@ -80,6 +80,7 @@ var s = StyleSheet.create({
     fontWeight: 'bold',
   },
   button: {
+    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',

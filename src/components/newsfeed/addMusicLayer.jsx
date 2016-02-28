@@ -61,7 +61,7 @@ class AddMusicLayer extends React.Component {
         width: this.state.width,
         height: this.state.height,
         borderRadius: this.state.borderRadius,
-        backgroundColor: '#b06954'}]}>
+        backgroundColor: '#ee9459'}]}>
         {content}
       </TouchableOpacity>
     )
@@ -70,7 +70,7 @@ class AddMusicLayer extends React.Component {
 
 var animation = {
   spring: {
-    duration: 400,
+    duration: 300,
     create: {
       type: LayoutAnimation.Types.linear,
       property: LayoutAnimation.Properties.opacity,

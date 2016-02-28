@@ -45,6 +45,7 @@ export const createUser = (email, password) => {
         if (error) {
           console.log("Error creating user:", error);
         } else {
+          login(email, password);
           dispatch(setUID(userData));
           console.log("Created user with uid:", userData.uid);
         }

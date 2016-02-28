@@ -39,7 +39,7 @@ class AddMusicForm extends React.Component{
 
   render () {
     return (
-      <View style={Styles.container}>
+      <View style={[Styles.container, {backgroundColor: '#ee9459'}]}>
       <Text style={s.formTitle}>Music Title</Text>
         <TextInput
           style={s.form}
@@ -55,10 +55,10 @@ class AddMusicForm extends React.Component{
           style={s.form}
           onChangeText={(text) => this.setState({instrument: text})}
         />
-      <TouchableOpacity style={[s.button, {right: 50}]} onPress={this.props.hideForm}>
+      <TouchableOpacity style={[s.button, {right: 35}]} onPress={this.props.hideForm}>
         <Text style={s.buttonTitle}>Cancel</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={[s.button, {left: 50}]}
+      <TouchableOpacity style={[s.button, {left: 35}]}
         onPress={this.submitNewMusic.bind(this)}>
         <Text style={s.buttonTitle}>Submit</Text>
       </TouchableOpacity>
@@ -70,18 +70,20 @@ class AddMusicForm extends React.Component{
 var s = StyleSheet.create({
   form: {
     height: 40,
-    borderColor: '#b06955',
+    borderColor: '#faf2e8',
     marginTop: 10,
     marginRight: 10,
     marginLeft: 10,
     borderWidth: 1,
   },
   formTitle: {
-    color: '#b06954',
+    marginTop: 10,
+    color: '#faf2e8',
     fontSize: 15,
     fontWeight: 'bold',
   },
   button: {
+    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
@@ -89,12 +91,11 @@ var s = StyleSheet.create({
     right: 50,
     height: 50,
     width: 150,
-    backgroundColor: '#b06954',
+    backgroundColor: '#fcdfa9',
   },
   buttonTitle: {
-    color: '#ffffff',
+    color: '#9e7c6e',
     fontSize: 15,
-    fontWeight: 'bold',
   }
 });
 
