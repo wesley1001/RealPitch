@@ -56,9 +56,4 @@ export default styles = StyleSheet.create({
     fontSize: 15,
     color: '#994950'
   },
-
-  // scrollview styles
-  scrollView: {
-    height: 300,
-  },
 });

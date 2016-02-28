@@ -18,7 +18,7 @@ let initialState = {
   Newsfeed: {
     firebaseRef: rootFirebase,
     newsfeedCardData: [],
-    isGettingNewsfeedData:true,
+    isRefreshing: false,
   },
   User: {
     firebaseRef: rootFirebase,
