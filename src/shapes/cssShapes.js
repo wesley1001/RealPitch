@@ -4,9 +4,8 @@ var {StyleSheet} = React;
 
 export default styles = StyleSheet.create({
   line: {
-    alignSelf: 'center',
+    alignSelf: 'stretch',
     height: 1,
-    width: 380,
     backgroundColor: '#ccaa91',
   },
   circle: {
@@ -17,7 +16,6 @@ export default styles = StyleSheet.create({
   },
   plusSign: {
     height: 30,
-    width: 30,
     color:'#ffffff',
     fontSize: 30,
     textAlign: 'center',

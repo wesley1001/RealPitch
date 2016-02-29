@@ -8,13 +8,16 @@ var {
   Text,
   View,
   TouchableOpacity,
+  Dimensions,
 } = React;
 
 var NewsfeedCard = ({musicTitle, artist, inst, fetchNewsfeedData}) => {
   let title = `${musicTitle} - ${artist}`;
+  let screenWidth = Dimensions.get('window').width;
+  console.log('width', screenWidth);
 
   return (
-    <TouchableOpacity style={Styles.card} activeOpacity={255} onPress={fetchNewsfeedData}>
+    <TouchableOpacity style={Styles.card} activeOpacity={255}>
       <View style={Styles.header}>
         <Text style={Styles.title}>{title}</Text>
         <Text style={Styles.inst}>{inst}</Text>

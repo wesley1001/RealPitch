@@ -25,8 +25,8 @@ export default styles = StyleSheet.create({
 
   // Styles for cards in newsfeed
   card: {
+    flex: 1,
     height: 300,
-    width: 380,
     backgroundColor: '#fcdfa9',
     borderRadius: 10,
     borderWidth: 1,

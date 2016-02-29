@@ -87,7 +87,7 @@ var s = StyleSheet.create({
     bottom: 50,
     right: 50,
     height: 50,
-    width: 150,
+    width: 100,
     backgroundColor: '#b06954',
   },
   buttonTitle: {
