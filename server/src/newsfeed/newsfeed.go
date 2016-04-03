@@ -20,14 +20,21 @@ func GetNewsFeed (di *di.DI) func (w http.ResponseWriter, req *http.Request) {
     var newsfeedData []Newsfeed
     mongoErr := di.NewsfeedCollection.Find(bson.M{}).All(&newsfeedData)
 
-    if mongoErr != nil {fmt.Printf("OOOPSSS")}
+    if mongoErr != nil {
+      http.Error(w, "Internal error", 500)
+      return
+    }
 
     newsfeedJSON, newsfeedError := json.Marshal(newsfeedData)
 
-    if newsfeedError != nil {fmt.Printf("OOOOPSS")}
+    if newsfeedError != nil {
+      http.Error(w, "Internal error", 500)
+      return
+    }
 
     w.Write(newsfeedJSON)
-    fmt.Printf("GETTING NEWSFEED!\n")
+
+    return
   }
 }
 
@@ -35,15 +42,23 @@ func AddNewsFeed (di *di.DI) func (w http.ResponseWriter, req *http.Request) {
   return func (w http.ResponseWriter, req *http.Request) {
 
     decoder := json.NewDecoder(req.Body)
-    var n Newsfeed
+    n := Newsfeed{}
     decodeErr := decoder.Decode(&n)
 
-    if decodeErr != nil {fmt.Printf("OOOPPSSSS")}
+    if decodeErr != nil {
+      http.Error(w, "Internal error", 500)
+      return
+    }
 
-    err := di.NewsfeedCollection.Insert(&n)
+    insertErr := di.NewsfeedCollection.Insert(&n)
 
-    if err != nil {fmt.Printf("OOOPPSSSS")}
+    if insertErr != nil {
+      http.Error(w, "Internal error", 500)
+      return
+    }
 
     fmt.Printf("ADDING NEWSFEED!\n")
+
+    return
   }
 }

@@ -16,8 +16,6 @@ export const updateNewsfeedCards = (snapshot, error, isRefreshing) => {
 export const FETCH_NEWSFEED_DATA = 'FETCH_NEWSFEED_DATA';
 export const fetchNewsfeedData = () => {
   return function (dispatch, getState) {
-    let firebase = getState().Newsfeed.firebaseRef;
-
     return co(function *() {
       let res = yield fetch('http://127.0.0.1:8080/newsfeed', {
         method: 'GET'
@@ -34,10 +32,7 @@ export const fetchNewsfeedData = () => {
 export const ADD_NEW_MUSIC = 'ADD_NEW_MUSIC';
 export const addNewMusic = (data) => {
   return function (dispatch, getState) {
-    let firebase = getState().Newsfeed.firebaseRef;
-
     return co(function *() {
-      console.log(4040, data);
       let res = yield fetch('http://127.0.0.1:8080/newsfeed', {
         method: 'POST',
         body: JSON.stringify(data),
