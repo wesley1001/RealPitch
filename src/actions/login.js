@@ -1,6 +1,7 @@
 'use strict';
 
 import co from 'co';
+import Config from '../config';
 
 export const SET_UID = 'SET_UID';
 export const setUID = (userData) => {
@@ -10,12 +11,11 @@ export const setUID = (userData) => {
   };
 };
 
-export const LOGIN = 'LOGIN';
 export const login = (email, password) => {
-  return function (dispatch, getState) {
+  return function (dispatch) {
     return co(function *() {
       let res;
-      res = yield fetch('http://127.0.0.1:8080/user/login', {
+      res = yield fetch(Config.address + '/user/login', {
         method: 'POST',
         body: JSON.stringify({email, password}),
       });
@@ -29,12 +29,11 @@ export const login = (email, password) => {
   };
 };
 
-export const CREATE_USER = 'CREATE_USER';
 export const createUser = (email, password) => {
-  return function (dispatch, getState) {
+  return function (dispatch) {
     return co(function *() {
       let res;
-      res = yield fetch('http://127.0.0.1:8080/user/signup', {
+      res = yield fetch(Config.address + '/user/signup', {
         method: 'POST',
         body: JSON.stringify({email, password}),
       });

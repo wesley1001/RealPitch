@@ -1,10 +1,10 @@
+'use strict';
+
 import React from 'react-native';
 import {Provider} from 'react-redux'
-import {createStore, applyMiddleware, combineReducers} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import Reducer from './src/reducers/index';
 import thunk from 'redux-thunk';
-import Firebase from 'firebase';
-import config from './src/config';
 import {fetchNewsfeedData} from './src/actions/newsfeed';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 
@@ -13,15 +13,12 @@ import Login from './src/containers/login';
 
 var {AppRegistry} = React;
 
-let rootFirebase = new Firebase(config.FIREBASE_ROOT);
 let initialState = {
   Newsfeed: {
-    firebaseRef: rootFirebase,
     newsfeedCardData: [],
     isRefreshing: false,
   },
   User: {
-    firebaseRef: rootFirebase,
     uid: null,
   },
 };

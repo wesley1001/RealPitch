@@ -1,44 +1,51 @@
-import _ from 'lodash';
-import co from 'co';
-import Promise from 'bluebird';
+'use strict';
 
-// Actions for updating newsfeed cards
+import co from 'co';
+import NewsfeedSnapshot from '../snapshots/newsfeed';
+import Config from '../config';
+
 export const UPDATE_NEWSFEED_CARDS = 'UPDATE_NEWSFEED_CARDS';
 export const updateNewsfeedCards = (snapshot, error, isRefreshing) => {
   return {
     type: UPDATE_NEWSFEED_CARDS,
     isRefreshing: isRefreshing,
     newsfeedSnapshot: snapshot,
-    newsfeedGetError: error,
+    fetchNewsfeedError: error,
   };
 };
 
-export const FETCH_NEWSFEED_DATA = 'FETCH_NEWSFEED_DATA';
+export const UPDATE_ADD_RESULT = 'UPDATE_ADD_RESULT';
+export const updateAddResult = (result) => {
+  return {
+    type: UPDATE_ADD_RESULT,
+    addNewsfeedResult: result
+  };
+};
+
 export const fetchNewsfeedData = () => {
-  return function (dispatch, getState) {
+  return function (dispatch) {
     return co(function *() {
-      let res = yield fetch('http://127.0.0.1:8080/newsfeed', {
+      let res = yield fetch(Config.address + '/newsfeed', {
         method: 'GET'
       });
 
       let newsfeedData = JSON.parse(yield res.text());
+      let newsfeedSnapshots = newsfeedData.map(NewsfeedSnapshot.create);
 
-      dispatch(updateNewsfeedCards(newsfeedData));
+      dispatch(updateNewsfeedCards(newsfeedSnapshots));
     });
   };
 };
 
-// actions for showing add music layer or sending music data to add
-export const ADD_NEW_MUSIC = 'ADD_NEW_MUSIC';
 export const addNewMusic = (data) => {
-  return function (dispatch, getState) {
+  return function (dispatch) {
     return co(function *() {
-      let res = yield fetch('http://127.0.0.1:8080/newsfeed', {
+      let res = yield fetch(Config.address + '/newsfeed', {
         method: 'POST',
         body: JSON.stringify(data),
       });
 
-      return res
+      dispatch(updateAddResult(res));
     });
   };
 };

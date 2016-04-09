@@ -1,37 +1,30 @@
+'use strict';
+
 import React from 'react-native';
-import Styles from '../../styles';
 import NewsfeedCard from './newsfeedCard';
-import Shapes from '../../shapes/cssShapes';
 import AddMusicLayer from './addMusicLayer';
 import RefreshableListView from 'react-native-refreshable-listview';
 
 var {
   View,
-  Text,
-  ScrollView,
-  StyleSheet,
   ListView,
   Dimensions,
 } = React;
 
-var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}) // assumes immutable objects
+var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 var createNewsfeedCards = (d, i) => {
   return (
     <NewsfeedCard
       key={d.key || i}
       fetchNewsfeedData={d.cb}
-      musicTitle={d.musicTitle}
+      title={d.title}
       artist={d.artist}
-      inst={d.inst}>
+      inst={d.instrument}>
     </NewsfeedCard>);
 };
 
-var Newsfeed = ({newsfeedCardData, fetchNewsfeedData, addNewMusic, isRefreshing}) => {
-  newsfeedCardData.forEach(d => {
-    d.cb = fetchNewsfeedData;
-  });
-
+var Newsfeed = ({newsfeedCardData, fetchNewsfeedData, addNewMusic}) => {
   let winHeight = Dimensions.get('window').height;
 
   return (

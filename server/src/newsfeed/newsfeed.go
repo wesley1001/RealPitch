@@ -9,7 +9,7 @@ import (
 )
 
 type Newsfeed struct {
-  MusicTitle string `json:"musicTitle" bson:"musicTitle"`
+  Title string `json:"title" bson:"title"`
   Artist string `json:"artist" bson:"artist"`
   Inst string `json:"inst" bson:"inst"`
 }
