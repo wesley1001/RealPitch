@@ -17,14 +17,13 @@ var createNewsfeedCards = (d, i) => {
   return (
     <NewsfeedCard
       key={d.key || i}
-      fetchNewsfeedData={d.cb}
       title={d.title}
       artist={d.artist}
       inst={d.instrument}>
     </NewsfeedCard>);
 };
 
-var Newsfeed = ({newsfeedCardData, fetchNewsfeedData, addNewMusic}) => {
+var Newsfeed = ({newsfeedCardData, fetchNewsfeedData, addNewsfeedResult, addNewMusic}) => {
   let winHeight = Dimensions.get('window').height;
 
   return (
@@ -33,10 +32,14 @@ var Newsfeed = ({newsfeedCardData, fetchNewsfeedData, addNewMusic}) => {
         style={{height: winHeight, backgroundColor: '#faf2e8'}}
         dataSource={ds.cloneWithRows(newsfeedCardData)}
         renderRow={createNewsfeedCards}
-        loadData={fetchNewsfeedData}
         refreshDescription='Refreshing'
+        loadData={fetchNewsfeedData}
       />
-      <AddMusicLayer pos={{bottom: 10, right: 10}} addNewMusic={addNewMusic}/>
+      <AddMusicLayer
+        pos={{bottom: 10, right: 10}}
+        addNewMusic={addNewMusic}
+        addNewsfeedResult={addNewsfeedResult}
+      />
     </View>
   );
 };

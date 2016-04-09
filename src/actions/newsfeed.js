@@ -29,8 +29,8 @@ export const fetchNewsfeedData = () => {
         method: 'GET'
       });
 
-      let newsfeedData = JSON.parse(yield res.text());
-      let newsfeedSnapshots = newsfeedData.map(NewsfeedSnapshot.create);
+      let newsfeedData = JSON.parse(yield res.text()) || [];
+      let newsfeedSnapshots = newsfeedData.map(NewsfeedSnapshot.create.bind(NewsfeedSnapshot));
 
       dispatch(updateNewsfeedCards(newsfeedSnapshots));
     });

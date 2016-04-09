@@ -38,7 +38,6 @@ var s = StyleSheet.create({
     alignItems: 'center',
     position: 'absolute',
     bottom: 50,
-    right: 50,
     height: 50,
     width: 100,
     backgroundColor: '#fcdfa9',
@@ -53,15 +52,16 @@ class AddMusicForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      musicTitle: '',
+      title: '',
       artist: '',
       instrument: '',
+      addNewsfeedResult: null,
     };
   }
 
   submitNewMusic() {
     let data = {
-      musicTitle: this.state.musicTitle,
+      title: this.state.title,
       artist: this.state.artist,
       inst: this.state.instrument,
     };
@@ -69,33 +69,48 @@ class AddMusicForm extends React.Component {
     this.props.addNewMusic(data);
   }
 
+  componentWillUpdate(nextProps) {
+    this.state.addNewsfeedResult = nextProps.addNewsfeedResult;
+  }
+
   render() {
-    return (
-      <View style={[Styles.container, {backgroundColor: '#ee9459'}]}>
-        <Text style={s.formTitle}>Music Title</Text>
-        <TextInput
-          style={s.form}
-          onChangeText={(text) => this.setState({musicTitle: text})}
-        />
-        <Text style={s.formTitle}>Artist</Text>
-        <TextInput
-          style={s.form}
-          onChangeText={(text) => this.setState({artist: text})}
-        />
-        <Text style={s.formTitle}>Instrument</Text>
-        <TextInput
-          style={s.form}
-          onChangeText={(text) => this.setState({instrument: text})}
-        />
-        <TouchableOpacity style={[s.button, {right: 35}]} onPress={this.props.hideForm}>
-          <Text style={s.buttonTitle}>Cancel</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[s.button, {left: 35}]}
-                          onPress={this.submitNewMusic.bind(this)}>
-          <Text style={s.buttonTitle}>Submit</Text>
-        </TouchableOpacity>
-      </View>
-    );
+    if (this.state.addNewsfeedResult) {
+      return (
+        <View ref='container' style={[Styles.container, {backgroundColor: '#ee9459'}]}>
+          <Text style={s.formTitle}>{this.state.addNewsfeedResult.status}</Text>
+          <TouchableOpacity style={[s.button]} onPress={this.props.hideForm}>
+            <Text style={s.buttonTitle}>Cancel</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } else {
+      return (
+        <View style={[Styles.container, {backgroundColor: '#ee9459'}]}>
+          <Text style={s.formTitle}>Music Title</Text>
+          <TextInput
+            style={s.form}
+            onChangeText={(text) => this.setState({title: text})}
+          />
+          <Text style={s.formTitle}>Artist</Text>
+          <TextInput
+            style={s.form}
+            onChangeText={(text) => this.setState({artist: text})}
+          />
+          <Text style={s.formTitle}>Instrument</Text>
+          <TextInput
+            style={s.form}
+            onChangeText={(text) => this.setState({instrument: text})}
+          />
+          <TouchableOpacity style={[s.button, {right: 35}]} onPress={this.props.hideForm}>
+            <Text style={s.buttonTitle}>Cancel</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[s.button, {left: 35}]}
+                            onPress={this.submitNewMusic.bind(this)}>
+            <Text style={s.buttonTitle}>Submit</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
   }
 }
 
