@@ -1,6 +1,6 @@
 import React from 'react-native';
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
+import {Provider} from 'react-redux'
+import {createStore, applyMiddleware} from 'redux'
 import Reducer from './src/reducers/index';
 import thunk from 'redux-thunk';
 import Firebase from 'firebase';
@@ -36,12 +36,12 @@ const AppWithStore = () => {
         tabBarBackgroundColor='e9e6c9'
         tabBarActiveTextColor='ca6144'
         tabBarInactiveTextColor='e0b58c'>
-          <Newsfeed tabLabel='Newsfeed'/>
-          <Login tabLabel='Profile'/>
+        <Newsfeed tabLabel='Newsfeed'/>
+        <Login tabLabel='Profile'/>
       </ScrollableTabView>
     </Provider>
   )
 };
 
 store.dispatch(fetchNewsfeedData());
-AppRegistry.registerComponent('NewProject', () => AppWithStore);
+AppRegistry.registerComponent('Real_Pitch', () => AppWithStore);

@@ -1,6 +1,6 @@
 {
-  "name": "NewProject",
-  "version": "0.0.1",
+  "name": "Real_Pitch",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "start": "react-native run-android"

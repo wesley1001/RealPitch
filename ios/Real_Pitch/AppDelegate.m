@@ -42,7 +42,7 @@
 //   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                      moduleName:@"NewProject"
+                                                      moduleName:@"Real_Pitch"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
 
