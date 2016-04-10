@@ -2,6 +2,7 @@
 
 import co from 'co';
 import Config from '../config';
+import {httpGet, httpPost} from '../../common/api';
 
 export const SET_UID = 'SET_UID';
 export const setUID = (userData) => {
@@ -14,16 +15,12 @@ export const setUID = (userData) => {
 export const login = (email, password) => {
   return function (dispatch) {
     return co(function *() {
-      let res;
-      res = yield fetch(Config.address + '/user/login', {
-        method: 'POST',
+      let res = yield httpGet(Config.address + '/user/login', {
         body: JSON.stringify({email, password}),
       });
 
-      let text = yield res.text();
-
-      if (res.ok && text !== '') {
-        dispatch(setUID({uid: text}));
+      if (res.ok && res.text !== '') {
+        dispatch(setUID({uid: res.text}));
       }
     });
   };
@@ -32,16 +29,12 @@ export const login = (email, password) => {
 export const createUser = (email, password) => {
   return function (dispatch) {
     return co(function *() {
-      let res;
-      res = yield fetch(Config.address + '/user/signup', {
-        method: 'POST',
+      let res = yield httpPost(Config.address + '/user/signup', {
         body: JSON.stringify({email, password}),
       });
 
-      let text = yield res.text();
-
-      if (res.ok && text !== '') {
-        dispatch(setUID({uid: text}));
+      if (res.ok && res.text !== '') {
+        dispatch(setUID({uid: res.text}));
       }
     });
   };
