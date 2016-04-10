@@ -1,7 +1,8 @@
+'use strict';
+
 import React from "react-native";
-import Styles from "../styles";
 import { connect } from 'react-redux'
-import {fetchNewsfeedData, addNewMusic } from '../actions/newsfeed';
+import {fetchNewsfeedData, updateAddResult, addNewMusic } from '../actions/newsfeed';
 
 import NewsfeedView from '../components/newsfeed/newsfeed';
 
@@ -9,6 +10,7 @@ const mapStateToProps = (state) => {
   return {
     newsfeedCardData: state.Newsfeed.newsfeedCardData,
     isRefreshing: state.Newsfeed.isRefreshing,
+    addNewsfeedResult: state.Newsfeed.addNewsfeedResult,
   };
 };
 

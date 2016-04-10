@@ -1,5 +1,8 @@
-import _ from 'lodash';
-import Promise from 'bluebird';
+'use strict';
+
+import co from 'co';
+import Config from '../config';
+import {httpGet, httpPost} from '../../common/api';
 
 export const SET_UID = 'SET_UID';
 export const setUID = (userData) => {
@@ -9,49 +12,30 @@ export const setUID = (userData) => {
   };
 };
 
-export const LOGIN = 'LOGIN';
 export const login = (email, password) => {
-  return function (dispatch, getState) {
-    let firebase = getState().User.firebaseRef;
-    let df = new Promise((resolve, reject) => {
-      let user =  firebase.authWithPassword({
-        email: email,
-        password: password,
-      }, (error, userData) => {
-        if (error) {
-          console.log("Error logging in user:", error);
-          reject();
-        } else {
-          dispatch(setUID(userData));
-          console.log("Logged in with uid:", userData.uid);
-          resolve(userData);
-        }
+  return function (dispatch) {
+    return co(function *() {
+      let res = yield httpGet(Config.address + '/user/login', {
+        body: JSON.stringify({email, password}),
       });
-    });
 
-    return df;
+      if (res.ok && res.text !== '') {
+        dispatch(setUID({uid: res.text}));
+      }
+    });
   };
 };
 
-export const CREATE_USER = 'CREATE_USER';
 export const createUser = (email, password) => {
-  return function (dispatch, getState) {
-    let firebase = getState().User.firebaseRef;
-    let df = new Promise((resolve, reject) => {
-      let user = firebase.createUser({
-        email: email,
-        password: password,
-      }, (error, userData) => {
-        if (error) {
-          console.log("Error creating user:", error);
-        } else {
-          login(email, password);
-          dispatch(setUID(userData));
-          console.log("Created user with uid:", userData.uid);
-        }
+  return function (dispatch) {
+    return co(function *() {
+      let res = yield httpPost(Config.address + '/user/signup', {
+        body: JSON.stringify({email, password}),
       });
-    });
 
-    return df;
+      if (res.ok && res.text !== '') {
+        dispatch(setUID({uid: res.text}));
+      }
+    });
   };
 };

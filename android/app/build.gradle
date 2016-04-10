@@ -79,7 +79,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.newproject"
+        applicationId "com.real_pitch"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1

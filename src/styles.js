@@ -10,12 +10,6 @@ export default styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#faf2e8',
   },
-  title: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 100,
-    color: 'white',
-  },
   circle: {
     height: 60,
     width: 60,
@@ -51,7 +45,7 @@ export default styles = StyleSheet.create({
     fontSize: 20,
     color: '#994950'
   },
-  inst: {
+  instrument: {
     alignSelf: 'flex-end',
     fontSize: 15,
     color: '#994950'

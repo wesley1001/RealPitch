@@ -51,7 +51,11 @@ class AddMusicLayer extends React.Component {
   render() {
     let plusSign = <Text style={Shapes.plusSign}>+</Text>;
     let content = this.state.isShowingLayer ?
-      <AddMusicForm hideForm={this.showAddMusicForm.bind(this, false)} addNewMusic={this.props.addNewMusic}/> : plusSign;
+      <AddMusicForm
+        hideForm={this.showAddMusicForm.bind(this, false)}
+        addNewMusic={this.props.addNewMusic}
+        addNewsfeedResult={this.props.addNewsfeedResult}
+      /> : plusSign;
 
     return (
       <TouchableOpacity onPress={this.showAddMusicForm.bind(this, true)} activeOpacity={255} style={[Shapes.circle, {
